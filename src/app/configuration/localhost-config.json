@@ -23,12 +23,12 @@
   "server": "Backend Server Configuration",
   "server": {
     "protocol": "http",
-    "host": "localhost",
-    "port": 8080
+    "host": "api.beyondtag.com",
+    "port": 80
   },
 
   "endpointBase": "Defines a prefix that is added when the service endpoint is resolved. Example: '/rest/api'",
-  "endpointBase": "",
+  "endpointBase": "/rest/api/v1",
 
   "endpoints": "Service endpoints. Used by configuration.getServiceEndpoint() method to resolve a service URL.",
   "endpoints": {
@@ -44,7 +44,7 @@
 
     "deal": "/deals",
     "deal.by-id": "/deals/:id",
-    "deal.page": "/deals/page",
+    "deal.page": "/deals",
     "deal.revoke": "/deals/:id/revoke",
     "deal.unrevoke": "/deals/:id/unrevoke",
     "deal.domains": "/deals/:id/domains",

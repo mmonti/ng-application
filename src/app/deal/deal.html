@@ -31,19 +31,21 @@
             <thead>
             <tr>
                 <th class="number-column">#</th>
-                <th ng-click="deal.search.doSort('displayName')">Display Name</th>
-                <th ng-click="deal.search.doSort('firstName')">First Name</th>
-                <th ng-click="deal.search.doSort('lastName')">Last Name</th>
-                <th ng-click="deal.search.doSort('emailAddress')">Email</th>
+                <th ng-click="deal.search.doSort('id')">ID</th>
+                <th>Image</th>
+                <th ng-click="deal.search.doSort('product.title')">Product Title</th>
+                <th ng-click="deal.search.doSort('startDate')">Deal Starts</th>
+                <th ng-click="deal.search.doSort('endDate')">Deal Ends</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="item in deal.deals" class="repeat-modify" ng-class="{'revoked': item.revoked}">
-                <th scope="row">{{ $index+1 + (identity.search.pagination.page.number-1) * identity.search.pagination.page.size }}</th>
-                <td><a ui-sref="main.deal-detail({id: item.id })">{{item.displayName}}</a></td>
-                <td>{{item.firstName}}</td>
-                <td>{{item.lastName}}</td>
-                <td>{{item.emailAddress}}</td>
+                <th scope="row">{{ $index+1 + (deal.search.pagination.page.number-1) * deal.search.pagination.page.size }}</th>
+                <td><a ui-sref="main.deal-detail({id: item.id })">{{item.id}}</a></td>
+                <td><img ng-src="{{item.product.images[0].location}}" alt="..." class="img-circle" width="20px" height="20px"></td>
+                <td>{{item.product.title}}</td>
+                <td>{{item.startDate | date}}</td>
+                <td>{{item.endDate | date}}</td>
             </tr>
             </tbody>
         </table>

@@ -13,11 +13,11 @@
     vm.viewMode = 0;
 
     // = Identities.
-    vm.identities = [];
+    vm.deals = [];
 
     // = Search Instance.
     vm.search = searchService.getInstance({
-        pagination: pagination.getInstance({size: 20, sort: [{property: 'displayName', direction: 'asc'}] }),
+        pagination: pagination.getInstance({size: 20, sort: [/*{ property: 'displayName', direction: 'asc' }*/] }),
         fetch: function(params) {
             dealService.page(params, function(data, status, headers, config) {
                 $log.info("data=%s, status=%s, headers=%s, config=%s", data, status, headers, config);
@@ -33,7 +33,7 @@
             var params = (vm.showRevoked) ? pageRequest : angular.extend({ revoked: false }, pageRequest);
             // = Search Term.
             return (vm.search.query !== null) ? angular.extend({
-                emailAddress: vm.search.query
+                title: vm.search.query
             }, params) : params;
         }
     });
@@ -45,7 +45,7 @@
         vm.search.onPageChange(vm.search.pagination.getPage());
     }
 
-    // = Trigger Identity Fetch.
+    // = Trigger Fetch.
     vm.search.onPageChange(0);
   }
 })();
