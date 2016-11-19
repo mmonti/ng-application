@@ -1,0 +1,264 @@
+#page-wrapper,
+#sidebar-wrapper {
+  transition: all .4s ease 0s;
+}
+
+.selected-menu {
+  clear: both;
+}
+
+i.closed {
+	color: white !important;
+}
+
+li.selected-menu {
+	a {
+		color: white !important;
+	}
+	span.menu-icon {
+		color: white !important;
+	}
+}
+
+#page-wrapper {
+  height: 100%;
+  padding-left: 70px;
+}
+
+#page-wrapper:not(.open) ul.sidebar {
+  bottom: 0;
+  
+  .selected-menu a {
+    border-right: 3px solid #e99d1a;
+  }
+  
+  .sidebar-main {
+    display: none;
+  }
+  
+  .sidebar-title {
+    display: none;
+    height: 0px;
+    text-indent: -100px;
+  }  
+  
+  .sidebar-footer {
+    display: none;
+  }
+  
+}
+
+.sidebar-main {
+  color: #ffffff;
+  display: block;
+  float: left;
+  text-decoration: none;
+  width: 250px;
+  font-size: 18px;
+  line-height: 60px;
+  
+  .logo {
+    width: 28px;
+    // margin: -5px 0px 0px 0px;
+    -ms-transform: rotate(-30deg); /* IE 9 */
+    -webkit-transform: rotate(-30deg); /* Chrome, Safari, Opera */
+    transform: rotate(-30deg);
+  }
+}
+
+#sidebar-wrapper {  
+  background-color: #30426a;
+  margin-left: -150px;
+  left: -30px;
+  width: 250px;
+  position: fixed;
+  height: 100%;
+  z-index: 999;
+  
+  .fingerprint-logo {
+    width: 30px;
+    margin: 10px 20px 0 0;
+  }
+  
+  .icon-resize-horizontal {
+    color: #738bc0;
+    cursor: pointer;
+  }
+    
+  ul.sidebar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-indent: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    
+    .sidebar-title {
+      color: #738bc0;
+      font-size: 12px;
+      line-height: 40px;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-left: 5px;
+    }
+    
+    .menu-icon {
+      float: right;
+      font-size: 18px;
+      padding-right: 28px;
+      line-height: 60px;
+    }
+    
+    a {
+      font-size: 18px;
+      line-height: 60px;      
+    }
+    
+    li a {
+      color: #fff;
+      display: block;
+      float: left;
+      text-decoration: none;
+      width: 250px;
+    }
+    
+    .sidebar-list {
+      height: 40px;
+      
+      a {
+        text-indent: 25px;
+        font-size: 15px;
+        color: #b2bfdc;
+        line-height: 40px;
+        &:hover {
+          color: #ffffff;
+        }
+      }
+      
+      .menu-icon {
+        float: right;
+        padding-right: 29px;
+        line-height: 40px;
+        width: 70px;
+        margin-right: 25px;
+      }
+    }
+  }
+  
+  .sidebar-footer {
+      position: absolute;
+      height: 40px;
+      bottom: 0;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      transition: all .6s ease 0s;
+      text-align: center;
+      color: #b2bfdc;
+      cursor: pointer;
+      
+      div {
+          outline: 0;
+      }
+  } 
+}
+
+#page-wrapper.open #sidebar-wrapper {
+  left: 150px;
+}
+
+#content-wrapper {
+  padding-left: 0;
+  margin-left: 0;
+  width: 100%;
+  height: auto;
+  
+  .row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
+  .row.header {
+    height: 60px;
+    background: #fff;
+    margin-bottom: 15px;
+    
+    .user {
+      min-width: 130px;
+    }
+
+    .user>.item {
+        width: 65px;
+        height: 60px;
+        float: right;
+        display: inline-block;
+        text-align: center;
+        vertical-align: middle;
+    }
+    
+    .meta {
+      
+      div {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      
+      .page {
+        font-size: 17px;
+        padding-top: 11px;
+      }
+      
+      .breadcrumb-links {
+        font-size: 10px;
+      }
+      
+    }
+  }
+  
+  .row.header>div:last-child {
+    padding-right: 0;
+  }
+}
+
+/* 
+  * Media Queries 
+*/
+
+@media only screen and (min-width: 561px) {
+  #page-wrapper.open {
+    padding-left: 250px;
+  }
+}
+
+@media only screen and (max-width: 560px) {
+  #page-wrapper.open {
+    padding-left: 70px;
+  }
+
+  .selected-menu a {
+    border-right: 3px solid #e99d1a;
+  }
+  
+  .sidebar-main {
+    display: none;
+  }
+  
+  .sidebar-title {
+    display: none;
+    height: 0px;
+    text-indent: -100px;
+  }  
+  
+  .sidebar-footer {
+    display: none;
+  }
+  
+  #sidebar-wrapper {  
+    margin-left: -150px;
+    left: -30px !important;
+  }
+}

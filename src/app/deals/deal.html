@@ -1,0 +1,62 @@
+<div class="row toolbar">
+    <div class="col-md-6">
+        <div class="btn btn-sm btn-default" ui-sref="main.deal-detail({id: null})">new deal</div>
+    </div>
+    <div class="col-md-6">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="form-group">
+            <input class="form-control input-lg" placeholder="Search..." type="text" ng-model="deal.search.query" id="inputLarge" ng-keypress="($event.which === 13) ? deal.search.onSearch() : 0">
+            <span class="search-input-clear icon-remove-circle" ng-click="deal.search.clear()" ng-hide="deal.search.query.length === 0"></span>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="col-xs-6">
+            <div class="checkbox pull-right">
+                <label><input type="checkbox" ng-click="deal.toggleShowRevoked()">Show Revoked</label>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation" ng-class="{active: deal.viewMode === 0}"><a ng-click="deal.viewMode = 0">list</a></li>
+                <li role="presentation" ng-class="{active: deal.viewMode === 1}"><a ng-click="deal.viewMode = 1">icon</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-12" ng-show="deal.viewMode === 0">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th class="number-column">#</th>
+                <th ng-click="deal.search.doSort('displayName')">Display Name</th>
+                <th ng-click="deal.search.doSort('firstName')">First Name</th>
+                <th ng-click="deal.search.doSort('lastName')">Last Name</th>
+                <th ng-click="deal.search.doSort('emailAddress')">Email</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in deal.deals" class="repeat-modify" ng-class="{'revoked': item.revoked}">
+                <th scope="row">{{ $index+1 + (identity.search.pagination.page.number-1) * identity.search.pagination.page.size }}</th>
+                <td><a ui-sref="main.deal-detail({id: item.id })">{{item.displayName}}</a></td>
+                <td>{{item.firstName}}</td>
+                <td>{{item.lastName}}</td>
+                <td>{{item.emailAddress}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-12" ng-show="deal.viewMode === 1">
+        <label for="primary" class="btn btn-primary pill" ng-repeat="deal in deal.deals" class="repeat-modify" ng-class="{'revoked': deal.revoked}">{{deal.displayName}}
+            <span class="badge space-left" ui-sref="main.deal-detail({id: deal.id })"><i class="icon-pencil"></i></span>
+        </label>
+    </div>
+
+    <div class="col-md-12 paginator">
+        <p>Total Elements: {{deal.search.pagination.getTotalElements()}} - Page: {{deal.search.pagination.getPageNumber()}} of {{deal.search.pagination.getTotalPages()}}</p>
+        <pagination class="pagination-sm" boundary-links="true" ng-change="deal.search.onPageChange()" total-items="deal.search.pagination.getTotalElements()" ng-model="deal.search.pagination.page.number" items-per-page="deal.search.pagination.getPageSize()"></pagination>
+    </div>
+</div>

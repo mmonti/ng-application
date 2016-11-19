@@ -1,0 +1,79 @@
+{
+  "applicationName": "Name of this Application",
+  "applicationName": "Application",
+
+  "environment": "Just the environment that this file represents.",
+  "environment": "local",
+
+  "authentication": "Authentication Configuration",
+  "authentication": {
+    "authEnabled": false,
+    "useAuthTokenHeader": true,
+    "authTokenHeaderName": "X-AUTH-TOKEN",
+    "authTokenRefreshHeaderName": "X-REFRESH-TOKEN",
+    "authTokenCookieKey": "authToken"
+  },
+
+  "paths": "Definitions of PATHS for the client application. Example: { 'root' : '/', 'signUp' : '/signUp', 'signIn' : '/signIn' }",
+  "paths": {},
+
+  "public": "Defines which path is considered public and does not require authentication. Example: ['signIn', 'signUp', 'forgot']",
+  "public": [],
+
+  "server": "Backend Server Configuration",
+  "server": {
+    "protocol": "http",
+    "host": "localhost",
+    "port": 8080
+  },
+
+  "endpointBase": "Defines a prefix that is added when the service endpoint is resolved. Example: '/rest/api'",
+  "endpointBase": "",
+
+  "endpoints": "Service endpoints. Used by configuration.getServiceEndpoint() method to resolve a service URL.",
+  "endpoints": {
+    "management": "/management",
+    "management.info": "/management/info",
+    "management.health": "/management/health",
+    "management.beans": "/management/beans",
+    "management.configprops": "/management/configprops",
+    "management.trace": "/management/trace",
+    "management.env": "/management",
+    "management.metrics": "/management/metrics",
+    "management.migrations": "/management/flyway",
+
+    "deal": "/deals",
+    "deal.by-id": "/deals/:id",
+    "deal.page": "/deals/page",
+    "deal.revoke": "/deals/:id/revoke",
+    "deal.unrevoke": "/deals/:id/unrevoke",
+    "deal.domains": "/deals/:id/domains",
+    "deal.groups": "/deals/:id/groups",
+    "deal.policies": "/deals/:id/policies",
+
+    "group": "/groups",
+    "group.by-id": "/groups/:id",
+    "group.page": "/groups/page",
+    "group.identities": "/groups/:id/identities",
+    "group.policies": "/groups/:id/policies",
+
+    "policy": "/policies",
+    "policy.by-id": "/policies/:id",
+    "policy.page": "/policies/page",
+    "policy.permissions": "/policies/:id/permissions",
+    "policy.groups": "/policies/:id/groups",
+    "policy.identities": "/policies/:id/identities",
+
+    "domain": "/domains",
+    "domain.by-id": "/domains/:id",
+    "domain.page": "/domains/page",
+    "domain.identities": "/domains/:id/identities",
+
+    "permission": "/permissions",
+    "permission.by-id": "/permissions/:id",
+    "permission.page": "/permissions/page",
+
+    "auth.token.refresh": "/token/refresh",
+    "auth.token.redirectUrl": "https://host/login/login.html?destinationUrl=identity"
+  }
+}

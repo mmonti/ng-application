@@ -1,0 +1,61 @@
+<!-- <div ng-controller="MainController"> -->
+
+  <div id="page-wrapper" ng-class="{'open': main.sideBarOpen, 'closed': !main.sideBarOpen}" ng-cloak>
+
+  <!-- Sidebar -->
+  <div id="sidebar-wrapper">
+
+    <ul class="sidebar">
+      <li class="sidebar-main">
+        <img class="logo" src="assets/images/fingerprint.png">
+        <span class="space-left">{{main.applicationName}}</span>
+      </li>
+
+      <li>
+        <a ng-click="main.toggleSidebar()">
+          <span class="sidebar-title">NAVIGATION</span>
+          <i class="menu-icon icon-resize-horizontal" ng-class="{'closed': !main.sideBarOpen}"></i>
+        </a>
+      </li>
+
+      <!-- Menu Definition -->
+      <li class="sidebar-list" ng-repeat="menu in main.menus" ng-class="{'selected-menu': main.selectedMenu.name === menu.name}">
+        <a ui-sref="{{menu.state}}" ng-click="main.selectMenu(menu)">{{menu.name}} <span class="menu-icon fa-icon fa" ng-class="menu.icon"></span></a>
+      </li>
+    </ul>
+
+    <div class="sidebar-footer">
+      <div class="col-xs-12" ng-click="open('sm')">
+          <libraries-list></libraries-list>
+      </div>
+    </div>
+  </div>
+  <!-- End Sidebar -->
+
+  <div id="content-wrapper">
+    <div class="page-content">
+      <!-- Header Bar -->
+      <div class="row header">
+        <div class="col-xs-12">
+          <div class="user pull-right">
+              <div class="item dropdown">
+              </div>
+          </div>
+          <div class="meta">
+            <div class="page">{{main.selectedMenu.name}}</div>
+            <div class="breadcrumb-links">
+              <a ui-sref="main.dashboard" ng-click="main.selectMenu({name: 'Dashboard'})">Home</a> / {{main.selectedMenu.name}}
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Header Bar -->
+
+      <!-- Main Content -->
+      <div ui-view></div>
+
+    </div><!-- End Page Content -->
+  </div><!-- End Content Wrapper -->
+  </div><!-- End Page Wrapper -->
+
+<!-- </div> -->

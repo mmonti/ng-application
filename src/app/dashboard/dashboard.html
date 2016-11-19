@@ -1,0 +1,123 @@
+<div class="row toolbar">
+    <div class="col-md-6">
+        <span>SERVICE OVERVIEW</span>
+    </div>
+    <div class="col-md-6"></div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <p class="lead">HEALTH</p>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <tbody>
+                <tr class="repeat-modify">
+                    <td><strong class="space-right">SERVICE STATUS:</strong><span ng-class="{'text-success': dashboard.health.status === 'UP', 'text-warning': dashboard.health.status !== 'UP'}">{{dashboard.health.status}}</span></td>
+                </tr>
+                <tr class="repeat-modify">
+                    <td><strong class="space-right">DISK STATUS:</strong><span ng-class="{'text-success': dashboard.health.diskSpace.status === 'UP', 'text-warning': dashboard.health.diskSpace.status !== 'UP'}">{{dashboard.health.diskSpace.status}}</span></td>
+                </tr>
+                <tr class="repeat-modify">
+                    <td><strong class="space-right">DISK FREE:</strong><span>{{dashboard.health.diskSpace.free}}</span></td>
+                </tr>
+                <tr class="repeat-modify">
+                    <td><strong class="space-right">DISK TOTAL:</strong><span>{{dashboard.health.diskSpace.total}}</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <p class="lead">BUILD</p>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <tbody>
+                <tr class="repeat-modify">
+                    <td><strong class="space-right">ARTIFACT:</strong><span>{{dashboard.info.build.artifact}}</span></td>
+                </tr>
+                <tr class="repeat-modify">
+                    <td><strong class="space-right">VERSION:</strong><span>{{dashboard.info.build.version}}</span></td>
+                </tr>
+                <tr class="repeat-modify">
+                    <td><strong class="space-right">NAME:</strong><span>{{dashboard.info.build.name}}</span></td>
+                </tr>
+                <tr class="repeat-modify">
+                    <td><strong class="space-right">DESCRIPTION:</strong><span>{{dashboard.info.build.description}}</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <p class="lead">GIT</p>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <tbody>
+                <tr class="repeat-modify">
+                    <td colspan="2"><strong class="space-right">BRANCH:</strong><span>{{dashboard.info.git.branch | uppercase}}</span></td>
+                </tr>
+                <tr class="repeat-modify">
+                    <td><strong class="space-right">COMMIT:</strong><span>{{dashboard.info.git.commit.id | uppercase}}</span></td>
+                    <td><strong class="space-right">DATE:</strong><span>{{dashboard.info.git.commit.time | date}}</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div class="row toolbar">
+    <div class="col-md-6">DATABASE OVERVIEW</div>
+    <div class="col-md-6"></div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+    <p class="lead">HEALTH</p>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <tbody>
+            <tr class="repeat-modify">
+                <td><strong class="space-right">DATABASE NAME:</strong><span">{{dashboard.health.db.database | uppercase}}</span></td>
+            </tr>
+            <tr class="repeat-modify">
+                <td><strong class="space-right">STATUS:</strong><span ng-class="{'text-success': dashboard.health.db.status === 'UP', 'text-warning': dashboard.health.db.status !== 'UP'}">{{dashboard.health.db.status}}</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+</div>
+        
+<div class="row">
+    <div class="col-md-12">
+        <p class="lead">MIGRATIONS</p>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th class="number-column">#</th>
+                    <th>VERSION</th>
+                    <th>DESCRIPTION</th>
+                    <th>SCRIPT</th>
+                    <th>STATE</th>
+                    <th>DATE</th>
+                    <th>EXECUTION TIME</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="migration in dashboard.migrations" class="repeat-modify">
+                    <th scope="row">{{$index+1}}</th>
+                    <td>{{migration.version}}</a></td>
+                    <td>{{migration.description}}</td>
+                    <td>{{migration.script}}</td>
+                    <td ng-class="{'text-success': migration.state==='SUCCESS'}">{{migration.state}}</td>
+                    <td>{{migration.installedOn | date}}</td>
+                    <td>{{migration.executionTime}}ms</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

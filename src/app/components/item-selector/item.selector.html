@@ -1,0 +1,76 @@
+<div class="container-fluid">
+    <div class="modal-header">
+        <h4 class="modal-title">{{itemSelector.definitions.title}}</h4>
+    </div>
+    <div class="modal-body">
+        
+        <div class="col-md-12" ng-hide="itemSelector.useSearchComponent">
+            <div class="form-group">
+                <input class="form-control input-lg" placeholder="Filter..." type="text" ng-model="itemSelector.searchTerm" id="inputLarge">
+                <span class="search-input-clear icon-remove-circle" ng-click="itemSelector.clearTerm()" ng-hide="itemSelector.searchTerm.length === 0"></span>
+            </div>
+        </div>
+        
+        <div class="col-md-12" ng-show="itemSelector.useSearchComponent">
+            <div class="form-group">
+                <input class="form-control input-lg" placeholder="Search..." type="text" ng-model="itemSelector.search.query" id="inputLarge" ng-keypress="($event.which === 13) ? itemSelector.search.onSearch() : 0">
+                <span class="search-input-clear icon-remove-circle" ng-click="itemSelector.search.clear()" ng-hide="itemSelector.search.query.length === 0"></span>
+            </div>
+        </div>
+        
+        <div class="col-md-12" ng-hide="itemSelector.definitions.columns">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th class="check-column"></th>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in itemSelector.availableItems | filter: itemSelector.searchTerm" class="repeat-modify">
+                    <th>
+                        <input type="checkbox" ng-checked="itemSelector.selectedItems[item.id]" ng-click="itemSelector.updateSelectedItems($event, item)">
+                    </th>
+                    <th scope="row" ng-if="itemSelector.useSearchComponent">{{(itemSelector.search.pagination.page.number-1) * itemSelector.search.pagination.page.size + $index+1}}</th>
+                    <th scope="row" ng-if="!itemSelector.useSearchComponent">{{$index+1}}</th>
+                    <td>{{item.name}}</td>
+                    <td>{{item.description}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="col-md-12" ng-show="itemSelector.definitions.columns">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th class="check-column"></th>
+                    <th>#</th>
+                    <th ng-repeat="column in itemSelector.definitions.columns">{{column.name}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in itemSelector.availableItems | filter: itemSelector.searchTerm" class="repeat-modify">
+                    <th>
+                        <input type="checkbox" ng-checked="itemSelector.selectedItems[item.id]" ng-click="itemSelector.updateSelectedItems($event, item)">
+                    </th>
+                    <th scope="row" ng-if="itemSelector.useSearchComponent">{{(itemSelector.search.pagination.page.number-1) * itemSelector.search.pagination.page.size + $index+1}}</th>
+                    <th scope="row" ng-if="!itemSelector.useSearchComponent">{{$index+1}}</th>
+                    <td ng-repeat="column in itemSelector.definitions.columns">{{item[column.property]}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="col-md-12 paginator" ng-show="itemSelector.useSearchComponent">
+            <p>Total Elements: {{itemSelector.search.pagination.getTotalElements()}} - Page: {{itemSelector.search.pagination.getPageNumber()}} of {{itemSelector.search.pagination.getTotalPages()}}</p>
+            <pagination class="pagination-sm" boundary-links="true" ng-change="itemSelector.search.onPageChange()" total-items="itemSelector.search.pagination.getTotalElements()" ng-model="itemSelector.search.pagination.page.number" items-per-page="itemSelector.search.pagination.getPageSize()"></pagination>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-sm btn-primary" type="button" ng-click="itemSelector.ok()">OK</button>
+        <button class="btn btn-sm btn-default" type="button" ng-click="itemSelector.cancel()">Cancel</button>
+    </div>
+</div>

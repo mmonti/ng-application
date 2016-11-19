@@ -1,0 +1,16 @@
+<div class="container-fluid dialog">
+    <div class="modal-header">
+        <h4 class="modal-title">{{dialog.definitions.title}}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12 dialog-content">
+                <h6>{{dialog.definitions.content}}</h6>
+            </div>    
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-sm btn-primary" type="button" ng-click="dialog.confirm()">confirm</button>
+        <button class="btn btn-sm btn-default" type="button" ng-click="dialog.cancel()">cancel</button>
+    </div>
+</div>
